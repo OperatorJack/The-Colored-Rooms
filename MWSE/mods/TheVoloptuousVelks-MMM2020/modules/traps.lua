@@ -18,7 +18,7 @@ local proximityTrapCallback
 
 local function onReferenceActivated(e)
     if common.timer.collision[e.reference.object.id] then
-        activeTimerTraps[e.reference] = true
+        activeTimerTraps[e.reference] = tes3.getSimulationTimestamp() + math.random(5)
     end
 
     if common.proximity.collision[e.reference.object.id] then
@@ -47,12 +47,14 @@ timer.start{iterations = -1, duration = 0.15, callback=trapTimerCallback}
 -- Timer Traps
 -- TODO: Add delta time check to change how often they trigger.
 timerTrapCallback = function(trap)
+    local nextProcessTime = activeTimerTraps[trap]
+
     local config = common.traps.timer[trap.object.id]
     if (config and
         config.proximity and
         isTrapTriggered(trap) == false and
-        tes3.player.position:distance(trap.position) <= config.proximity
-        -- TODO: Add time check here to prevent excessive proccing
+        tes3.player.position:distance(trap.position) <= config.proximity and
+        nextProcessTime <= tes3.getSimulationTimestamp()
     ) then
         -- Trigger disease
         event.trigger("TheColoredRooms:TriggerDisease", {
@@ -63,6 +65,8 @@ timerTrapCallback = function(trap)
         if (config.animate) then
             -- Animate the trap somehow.
         end
+
+        activeTimerTraps[trap] = tes3.getSimulationTimestamp() + math.random(7,12)
     end
 end
 
