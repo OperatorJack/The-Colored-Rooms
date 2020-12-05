@@ -7,6 +7,6 @@ end
 event.register("TheColoredRooms:TriggerDisease", function(e)
     mwscript.addSpell({
         reference = e.reference, 
-        spell = getRandomDisease()
+        spell = e.diseaseId or getRandomDisease()
     })
 end)
