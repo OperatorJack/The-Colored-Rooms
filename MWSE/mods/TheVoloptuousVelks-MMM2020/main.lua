@@ -13,6 +13,7 @@ end
 ----------------------------
 
 require("TheVoloptuousVelks-MMM2020.modules.diseases")
+require("TheVoloptuousVelks-MMM2020.modules.traps")
 
 local function initialized()
     print("[The Colored Doors: INFO] Initialized")
