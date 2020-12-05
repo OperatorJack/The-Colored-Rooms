@@ -1,12 +1,11 @@
 local common = require("TheVoloptuousVelks-MMM2020.common")
 
 local function isTrapTriggered(trap)
-    return trap.data.VV20 and trap.data.VV20.triggered
+    return trap.data.VV20 ~= nil and trap.data.VV20.triggered == true
 end
-local function setTrapTriggered(trap, table)
+local function setTrapTriggered(trap)
     trap.data.VV20 = trap.data.VV20 or {}
     trap.data.VV20.triggered = true
-    table[trap] = nil
 end
 
 -- Trap Controller for non-event based traps.
@@ -17,12 +16,14 @@ local activeProximityTraps = {}
 local proximityTrapCallback
 
 local function onReferenceActivated(e)
-    if common.timer.collision[e.reference.object.id] then
+    if common.traps.timer[e.reference.object.id] then
         activeTimerTraps[e.reference] = tes3.getSimulationTimestamp() + math.random(5)
+        common.debug(string.format("Activated Timer trap: %s", e.reference))
     end
 
-    if common.proximity.collision[e.reference.object.id] then
+    if common.traps.proximity[e.reference.object.id] then
         activeProximityTraps[e.reference] = true
+        common.debug(string.format("Activated Proximity trap: %s", e.reference))
     end
 end
 event.register("referenceActivated", onReferenceActivated)
@@ -41,21 +42,26 @@ local function trapTimerCallback()
         proximityTrapCallback(trapReference)
     end
 end
-timer.start{iterations = -1, duration = 0.15, callback=trapTimerCallback}
+
+event.register("loaded", function()
+    timer.start{iterations = -1, duration = 0.15, callback=trapTimerCallback}
+end)
 
 
 -- Timer Traps
 -- TODO: Add delta time check to change how often they trigger.
 timerTrapCallback = function(trap)
     local nextProcessTime = activeTimerTraps[trap]
-
     local config = common.traps.timer[trap.object.id]
+
     if (config and
         config.proximity and
         isTrapTriggered(trap) == false and
         tes3.player.position:distance(trap.position) <= config.proximity and
         nextProcessTime <= tes3.getSimulationTimestamp()
     ) then
+        common.debug(string.format("Processing Timer trap: %s", trap))
+
         -- Trigger disease
         event.trigger("TheColoredRooms:TriggerDisease", {
             reference = tes3.player,
@@ -64,6 +70,7 @@ timerTrapCallback = function(trap)
 
         if (config.animate) then
             -- Animate the trap somehow.
+            tes3.messageBox("Animation!")
         end
 
         activeTimerTraps[trap] = tes3.getSimulationTimestamp() + math.random(7,12)
@@ -73,21 +80,26 @@ end
 -- Proximity Traps
 proximityTrapCallback = function(trap)
     local config = common.traps.proximity[trap.object.id]
+
     if (config and
         config.proximity and
         isTrapTriggered(trap) == false and
         tes3.player.position:distance(trap.position) <= config.proximity
     ) then
+        common.debug(string.format("Processing Proximity trap: %s", trap))
+
         -- Trigger disease
         event.trigger("TheColoredRooms:TriggerDisease", {
             reference = tes3.player,
             diseaseId = config.diseaseId
         })
 
-        setTrapTriggered(trap, activeProximityTraps)
+        setTrapTriggered(trap)
+        activeProximityTraps[trap] = nil
 
         if (config.animate) then
             -- Animate the trap somehow.
+            tes3.messageBox("Animation!")
         end
     end
 end
@@ -100,6 +112,8 @@ local function onCollision(e)
         common.traps.collision[trap.object.id] and
         isTrapTriggered(trap) == false
     ) then
+        common.debug(string.format("Processing Proximity trap: %s", trap))
+        
         local config = common.traps.collision[trap.object.id]
 
         -- Trigger disease
@@ -112,6 +126,7 @@ local function onCollision(e)
 
         if (config.animate) then
             -- Animate the trap somehow.
+            tes3.messageBox("Animation!")
         end
     end
 end
