@@ -16,7 +16,7 @@ local activeProximityTraps = {}
 
 local function onReferenceActivated(e)
     if common.traps.timer[e.reference.object.id] then
-        activeTimerTraps[e.reference] = tes3.getSimulationTimestamp() + math.random(5)
+        activeTimerTraps[e.reference] = tes3.getSimulationTimestamp() + math.random(5) / 100
         common.debug("Activated Timer trap: %s", e.reference)
     end
     if common.traps.proximity[e.reference.object.id] then
@@ -58,7 +58,7 @@ local function timerTrapCallback(trap)
             tes3.messageBox("Animation!")
         end
 
-        activeTimerTraps[trap] = tes3.getSimulationTimestamp() + math.random(7,12)
+        activeTimerTraps[trap] = tes3.getSimulationTimestamp() + math.random(7,12) / 100
     end
 end
 
