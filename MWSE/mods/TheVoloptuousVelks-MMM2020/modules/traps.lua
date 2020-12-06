@@ -18,12 +18,12 @@ local proximityTrapCallback
 local function onReferenceActivated(e)
     if common.traps.timer[e.reference.object.id] then
         activeTimerTraps[e.reference] = tes3.getSimulationTimestamp() + math.random(5)
-        common.debug(string.format("Activated Timer trap: %s", e.reference))
+        common.debug("Activated Timer trap: %s", e.reference)
     end
 
     if common.traps.proximity[e.reference.object.id] then
         activeProximityTraps[e.reference] = true
-        common.debug(string.format("Activated Proximity trap: %s", e.reference))
+        common.debug("Activated Proximity trap: %s", e.reference)
     end
 end
 event.register("referenceActivated", onReferenceActivated)
@@ -60,7 +60,7 @@ timerTrapCallback = function(trap)
         tes3.player.position:distance(trap.position) <= config.proximity and
         nextProcessTime <= tes3.getSimulationTimestamp()
     ) then
-        common.debug(string.format("Processing Timer trap: %s", trap))
+        common.debug("Processing Timer trap: %s", trap)
 
         -- Trigger disease
         event.trigger("TheColoredRooms:TriggerDisease", {
@@ -86,7 +86,7 @@ proximityTrapCallback = function(trap)
         isTrapTriggered(trap) == false and
         tes3.player.position:distance(trap.position) <= config.proximity
     ) then
-        common.debug(string.format("Processing Proximity trap: %s", trap))
+        common.debug("Processing Proximity trap: %s", trap)
 
         -- Trigger disease
         event.trigger("TheColoredRooms:TriggerDisease", {
@@ -112,8 +112,8 @@ local function onCollision(e)
         common.traps.collision[trap.object.id] and
         isTrapTriggered(trap) == false
     ) then
-        common.debug(string.format("Processing Proximity trap: %s", trap))
-        
+        common.debug("Processing Proximity trap: %s", trap)
+
         local config = common.traps.collision[trap.object.id]
 
         -- Trigger disease

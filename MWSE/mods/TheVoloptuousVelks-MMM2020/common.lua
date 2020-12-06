@@ -1,12 +1,13 @@
 local common = {}
 
 local debugMode = true
+local prepend = '[VV 2020: DEBUG] '
 
-common.debug = function (message)
+function common.debug(str, ...)
     if (debugMode == true) then
-        local prepend = '[VV 2020: DEBUG] '
-        mwse.log(prepend .. message)
-        tes3.messageBox(prepend .. message)
+        str = prepend .. str
+        mwse.log(str, ...)
+        tes3.messageBox(str, ...)
     end
 end
 
