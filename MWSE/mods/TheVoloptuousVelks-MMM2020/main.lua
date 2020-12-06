@@ -18,5 +18,15 @@ require("TheVoloptuousVelks-MMM2020.modules.traps")
 local function initialized()
     print("[The Colored Doors: INFO] Initialized")
 end
-
 event.register("initialized", initialized)
+
+local function loadTestCell(e)
+    if e.isAltDown and tes3.mobilePlayer then
+        tes3.positionCell{
+            reference = tes3.player,
+            cell = "VV20_Test",
+            position = {3465, 4330, 12000},
+        }
+    end
+end
+event.register("keyDown", loadTestCell, {filter=tes3.scanCode.d})
