@@ -12,8 +12,25 @@ if (mwse.buildDate == nil) or (mwse.buildDate < 20201010) then
 end
 ----------------------------
 
+-- Check Magicka Expanded framework.
+local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
+if (framework == nil) then
+    local function warning()
+        tes3.messageBox(
+            "[The Colored Doors ERROR] Magicka Expanded framework is not installed!"
+            .. " You will need to install it to use this mod."
+        )
+    end
+    event.register("initialized", warning)
+    event.register("loaded", warning)
+    return
+end
+----------------------------
+
+
 require("TheVoloptuousVelks-MMM2020.modules.diseases")
 require("TheVoloptuousVelks-MMM2020.modules.traps")
+require("TheVoloptuousVelks-MMM2020.modules.magic")
 
 local function initialized()
     print("[The Colored Doors: INFO] Initialized")
@@ -27,6 +44,11 @@ local function loadTestCell(e)
             cell = "VV20_Test",
             position = {3465, 4330, 12000},
         }
+
+        mwscript.addSpell({
+            reference = tes3.player,
+            spell = "VV20_SpellAbsorbDisease"
+        })
     end
 end
 event.register("keyDown", loadTestCell, {filter=tes3.scanCode.d})
