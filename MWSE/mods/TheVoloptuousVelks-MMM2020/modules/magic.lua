@@ -13,10 +13,17 @@ local function onTick(e)
     local target = e.effectInstance.target
     local caster = e.sourceInstance.caster
 
-    for _, spell in pairs(target.object.spells) do
+    for _, spell in pairs(target.object.spells.iterator) do
         if (spell.castType == tes3.spellType.disease) then
-            caster.object.spells:add(spell)
-            target.object.spells:remove(spell)
+            mwscript.addSpell({
+                reference = caster,
+                spell = spell
+            })
+            
+            mwscript.removeSpell({
+                reference = target,
+                spell = spell
+            })
         end
     end
 	e.effectInstance.state = tes3.spellState.retired
