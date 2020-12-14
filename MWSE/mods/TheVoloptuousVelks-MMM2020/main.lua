@@ -31,6 +31,7 @@ end
 require("TheVoloptuousVelks-MMM2020.modules.diseases")
 require("TheVoloptuousVelks-MMM2020.modules.traps")
 require("TheVoloptuousVelks-MMM2020.modules.magic")
+require("TheVoloptuousVelks-MMM2020.modules.skybox")
 
 local function initialized()
     print("[The Colored Doors: INFO] Initialized")

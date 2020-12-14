@@ -96,6 +96,7 @@ end
 local function onCollision(e)
     local trap = e.target
     if (e.mobile == tes3.mobilePlayer and
+        e.target and
         common.traps.collision[trap.object.id] and
         isTrapTriggered(trap) == false
     ) then

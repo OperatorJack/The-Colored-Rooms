@@ -44,4 +44,10 @@ common.traps = {
     }
 }
 
+common.skybox = {
+    cells = {
+        ["CustomSkyTest"] = true
+    }
+}
+
 return common
