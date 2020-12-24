@@ -11,6 +11,20 @@ function common.debug(str, ...)
     end
 end
 
+common.npcs = {
+    falx = "VV20_NpcFalx"
+}
+
+common.items = {
+    dawnbreaker = "VV20_Dawnbreaker",
+    cursedDawnbreaker = "VV20_CursedDawnbreaker"
+}
+
+common.journals = {
+    mq01 = "VV20_MQ_MysteriousRuin",
+    fq01 = "VV20_FG_MissingGuildmates"
+}
+
 common.diseases = {
     {
         id = "VV20_DiseaseTrapTest1"
