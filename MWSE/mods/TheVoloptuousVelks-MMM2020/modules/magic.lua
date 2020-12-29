@@ -1,6 +1,6 @@
 -- Register new effects --
 local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
-local functions = include("OperatorJack.EnhancedLight.functions")
+local common = require("TheVoloptuousVelks-MMM2020.common")
 
 tes3.claimSpellEffectId("absorbDisease", 428)
 
@@ -40,8 +40,8 @@ local function addEffect()
 		baseCost = 16,
 
 		-- Various flags.
-		allowEnchanting = false,
-        allowSpellmaking = false,
+		allowEnchanting = true,
+        allowSpellmaking = true,
 		appliesOnce = true,
 		canCastTarget = true,
         canCastTouch = true,
@@ -70,11 +70,11 @@ local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
 
 local function registerSpells()
     framework.spells.createBasicSpell({
-        id = "VV20_SpellAbsorbDisease",
-        name = "Absorb Disease",
+        id = common.spells.absorbDisease,
+        name = "Peryite's Touch",
         effect = tes3.effect.absorbDisease,
         range = tes3.effectRange.touch,
-        magickaCost = 75,
+        magickaCost = 10,
     })
 end
 event.register("MagickaExpanded:Register", registerSpells)

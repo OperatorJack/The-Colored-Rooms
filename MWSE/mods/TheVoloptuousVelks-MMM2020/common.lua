@@ -12,7 +12,9 @@ function common.debug(str, ...)
 end
 
 common.npcs = {
-    falx = "VV20_NpcFalx"
+    falx = "VV20_NpcFalx",
+    meridia = "VV20_NpcMeridia",
+    peryite = "VV20_NpcPeryite",
 }
 
 common.items = {
@@ -20,8 +22,13 @@ common.items = {
     cursedDawnbreaker = "VV20_CursedDawnbreaker"
 }
 
+common.spells = {
+    absorbDisease = "VV20_SpellAbsorbDisease",
+    contagion = "VV20_SpellContagion"
+}
 common.journals = {
     mq01 = "VV20_MQ_MysteriousRuin",
+    mq02 = "VV20_MQ_ReturningTheContagion",
     fq01 = "VV20_FG_MissingGuildmates"
 }
 
