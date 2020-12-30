@@ -17,6 +17,13 @@ local function initialized()
     mwse.overrideScript("VV20_ScriptQuestPortal", function(e)
         distanceCheckForUpdate(e.reference, 512, common.journals.mq01, 40)
     end)
+
+
+    mwse.overrideScript("VV20_ScriptQuestGoToVos", function(e)
+        mwscript.stopScript({script = "VV20_ScriptQuestGoToVos"})
+
+        
+    end)
 end
 
 event.register("initialized", initialized)

@@ -8,7 +8,7 @@ event.register("spellTick", function(e)
         e.effectInstance.target == tes3.player and
         tes3.getJournalIndex({ id = common.journals.mq02}) == 1000) then
         tes3.updateJournal({id=common.journals.mq02, index=4000})
-        tes3.setGlobal("VV20_GlobalHasContagion", 0)
+        tes3.setGlobal(common.globals.hasContagion, 0)
     end
 end)
 -----------------------------------------------------
@@ -22,7 +22,7 @@ event.register("spellTick", function(e)
     then
         e.target.mobile:applyHealthDamage(1000)
         tes3.updateJournal({id=common.journals.mq01, index=90})
-        tes3.setGlobal("VV20_GlobalHasContagion", 1)
+        tes3.setGlobal(common.globals.hasContagion, 1)
     end
 end)
 
@@ -78,9 +78,9 @@ event.register("activate", function(e)
             if (index >= stage.min and index <= stage.max) then
                 local contagion = tes3.getObject(common.spells.contagion)
                 if (tes3.player.object.spells:contains(contagion)) then
-                    tes3.setGlobal("VV20_GlobalHasContagion", 1)
+                    tes3.setGlobal(common.globals.hasContagion, 1)
                 else      
-                    tes3.setGlobal("VV20_GlobalHasContagion", 0)
+                    tes3.setGlobal(common.globals.hasContagion, 0)
                 end
 
                 tes3.player:activate(tes3.getReference(link.id))

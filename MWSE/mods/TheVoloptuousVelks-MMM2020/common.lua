@@ -11,6 +11,15 @@ function common.debug(str, ...)
     end
 end
 
+common.markers = {
+    vosCiel = "VV20_ActCielVosMarker",
+    vosLirielle = "VV20_ActLirelleVosMarker"
+}
+
+common.globals = {
+    hasContagion = "VV20_GlobalHasContagion"
+}
+
 common.npcs = {
     falx = "VV20_NpcFalx",
     meridia = "VV20_NpcMeridia",
