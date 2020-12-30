@@ -24,6 +24,9 @@ common.npcs = {
     falx = "VV20_NpcFalx",
     meridia = "VV20_NpcMeridia",
     peryite = "VV20_NpcPeryite",
+    ciel = "VV20_NpcCiel",
+    lirielle = "VV20_NpcLirielle",
+    barnand = "VV20_NpcBarnand"
 }
 
 common.items = {
@@ -76,7 +79,8 @@ common.traps = {
 
 common.skybox = {
     cells = {
-        ["CustomSkyTest"] = true
+        ["CustomSkyTest"] = true,
+        ["The Colored Rooms"] = true,
     }
 }
 

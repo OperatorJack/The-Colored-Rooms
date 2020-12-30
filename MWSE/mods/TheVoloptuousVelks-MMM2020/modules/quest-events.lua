@@ -125,3 +125,14 @@ event.register("combatStart", function (e)
     end
 end)
 -----------------------------------------------------
+
+--
+-- Handle activating Bernard
+--
+event.register("activate", function(e)
+    if (e.target.baseObject.id == common.npcs.barnand and 
+        tes3.getJournalIndex({ id = common.journals.fq01}) == 50) then
+        tes3.updateJournal({id=common.journals.fq01, index=60})
+    end
+end)
+-----------------------------------------------------

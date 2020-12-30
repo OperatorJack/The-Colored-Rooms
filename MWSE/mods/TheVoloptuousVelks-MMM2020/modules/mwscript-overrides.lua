@@ -11,6 +11,30 @@ end
 local function initialized()
     mwse.overrideScript("VV20_ScriptQuestCaveEntr", function(e)
         distanceCheckForUpdate(e.reference, 512, common.journals.mq01, 20)
+
+        if (tes3.getJournalIndex({ id = common.journals.fq01}) == 60 ) then
+            local vosCielMarkerRef = tes3.getReference(common.markers.vosCiel)
+            local vosLirielleMarkerRef = tes3.getReference(common.markers.vosLirielle)
+            local cielRef = tes3.getReference(common.npcs.ciel)
+            local lirielleRef = tes3.getReference(common.npcs.lirielle)
+
+            if (cielRef.cell.id == vosCielMarkerRef.cell.id) then
+                return
+            end
+
+            tes3.positionCell({
+                reference = cielRef,
+                position = vosCielMarkerRef.position,
+                orientation = vosCielMarkerRef.orientation,
+                cell = vosCielMarkerRef.cell
+            })
+            tes3.positionCell({
+                reference = lirielleRef,
+                position = vosLirielleMarkerRef.position,
+                orientation = vosLirielleMarkerRef.orientation,
+                cell = vosLirielleMarkerRef.cell
+            })
+        end
     end)
 
 
