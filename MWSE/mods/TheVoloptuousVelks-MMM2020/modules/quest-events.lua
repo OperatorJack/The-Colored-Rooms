@@ -16,7 +16,7 @@ end)
 -- 
 -- Handle Absorb Disease being cast on Falx
 --
-event.register("spellCasted", function(e)
+event.register("spellTick", function(e)
     if (e.target.baseObject.id == common.npcs.falx and
         e.source.id == common.spells.absorbDisease) 
     then
