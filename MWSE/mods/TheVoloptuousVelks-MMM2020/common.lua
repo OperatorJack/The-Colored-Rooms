@@ -26,7 +26,17 @@ common.npcs = {
     peryite = "VV20_NpcPeryite",
     ciel = "VV20_NpcCiel",
     lirielle = "VV20_NpcLirielle",
-    barnand = "VV20_NpcBarnand"
+    barnand = "VV20_NpcBarnand",
+    fevris = "VV20_NpcCultistFevris"
+}
+
+common.creatures = {
+    auroranScript1 = "VV20_CreaAuroranScript1",
+    auroranScript2 = "VV20_CreaAuroranScript2",
+    auroranScript3 = "VV20_CreaAuroranScript3",
+    cultistScript1 = "VV20_CreaCorCultScript1",
+    cultistScript2 = "VV20_CreaCorCultScript2",
+    cultistScript3 = "VV20_CreaCorCultScript3"
 }
 
 common.items = {
@@ -36,6 +46,7 @@ common.items = {
 
 common.spells = {
     absorbDisease = "VV20_SpellAbsorbDisease",
+    cureDisease = "VV20_SpellCureDisease",
     contagion = "VV20_SpellContagion"
 }
 common.journals = {

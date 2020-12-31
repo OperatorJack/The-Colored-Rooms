@@ -1,5 +1,16 @@
 local common = require("TheVoloptuousVelks-MMM2020.common")
 
+local function engage(combatants, targets)
+    for _, combatant in ipairs(combatants) do
+        for _, target in ipairs(targets) do
+            if (combatant and target) then
+                combatant.mobile:startCombat(target.mobile)
+                target.mobile:startCombat(combatant.mobile)
+            end
+        end 
+    end
+end
+
 local function distanceCheckForUpdate(reference, distance, journal, index)
     if (reference.position:distance(tes3.player.position) <= distance) then
         if (tes3.getJournalIndex({ id = journal}) < index ) then
@@ -11,7 +22,9 @@ end
 local function initialized()
     mwse.overrideScript("VV20_ScriptQuestCaveEntr", function(e)
         distanceCheckForUpdate(e.reference, 512, common.journals.mq01, 20)
+    end)
 
+    mwse.overrideScript("VV20_ScriptQuestVarosTradehouse", function(e)
         if (tes3.getJournalIndex({ id = common.journals.fq01}) == 60 ) then
             local vosCielMarkerRef = tes3.getReference(common.markers.vosCiel)
             local vosLirielleMarkerRef = tes3.getReference(common.markers.vosLirielle)
@@ -37,9 +50,27 @@ local function initialized()
         end
     end)
 
-
     mwse.overrideScript("VV20_ScriptQuestPortal", function(e)
         distanceCheckForUpdate(e.reference, 512, common.journals.mq01, 40)
+    end)
+
+    mwse.overrideScript("VV20_ScriptQuestCaveFight", function(e)
+        if (e.reference.position:distance(tes3.player.position) <= 1024) then
+            local auroran1 = tes3.getReference(common.creatures.auroranScript1)
+            local auroran2 = tes3.getReference(common.creatures.auroranScript2)
+            local auroran3 = tes3.getReference(common.creatures.auroranScript3)
+            
+            local cultist1 = tes3.getReference(common.creatures.cultistScript1)
+            local cultist2 = tes3.getReference(common.creatures.cultistScript2)
+            local cultist3 = tes3.getReference(common.creatures.cultistScript3)
+
+            aurorans = {auroran1, auroran2, auroran3}
+            cultists = {cultist1, cultist2, cultist3}
+            
+            engage(aurorans, cultists)
+
+            e.reference:disable()
+        end
     end)
 end
 

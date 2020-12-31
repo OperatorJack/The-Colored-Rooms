@@ -83,7 +83,13 @@ event.register("activate", function(e)
                     tes3.setGlobal(common.globals.hasContagion, 0)
                 end
 
-                tes3.player:activate(tes3.getReference(link.id))
+                local ref = tes3.getReference(link.id)
+                if (not ref) then
+                    tes3.messageBox("MWSE Error. Save, restart MW and try again.")
+                    return false
+                end
+
+                tes3.player:activate(ref)
                 return false
             end
         end
