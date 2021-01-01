@@ -47,7 +47,8 @@ common.items = {
 common.spells = {
     absorbDisease = "VV20_SpellAbsorbDisease",
     cureDisease = "VV20_SpellCureDisease",
-    contagion = "VV20_SpellContagion"
+    contagion = "VV20_SpellContagion",
+    summonAuroran = "VV20_SpellSummonAuroran",
 }
 common.journals = {
     mq01 = "VV20_MQ_MysteriousRuin",
