@@ -27,7 +27,13 @@ common.npcs = {
     ciel = "VV20_NpcCiel",
     lirielle = "VV20_NpcLirielle",
     barnand = "VV20_NpcBarnand",
-    fevris = "VV20_NpcCultistFevris"
+    fevris = "VV20_NpcCultistFevris",
+
+    ayleid_dyrurdant = "VV20_NpcAyleidDyrurdant",
+
+    torture_folvys = "VV20_NpcTortureFolvys",
+
+    prisoner_waylas = "VV20_NpcPrisonWaylas",
 }
 
 common.creatures = {

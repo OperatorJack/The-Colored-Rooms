@@ -72,6 +72,19 @@ local function initialized()
             e.reference:disable()
         end
     end)
+
+    mwse.overrideScript("VV20_ScriptEventDyrurdant", function(e)
+        if (e.reference.position:distance(tes3.player.position) <= 512) then
+            local ayleid = tes3.getReference(common.npcs.ayleid_dyrurdant)
+            local victim = tes3.getReference(common.npcs.torture_folvys)
+
+            if (victim.mobile.isDead ~= true) then
+                victim.mobile:applyHealthDamage(1000)
+                ayleid.mobile:startCombat(tes3.mobilePlayer)
+                e.reference:disable()
+            end
+        end
+    end)
 end
 
 event.register("initialized", initialized)

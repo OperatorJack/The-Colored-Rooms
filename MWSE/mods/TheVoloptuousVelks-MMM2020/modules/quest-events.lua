@@ -118,18 +118,6 @@ event.register("attack", function (e)
             return false
     end
 end)
-
-event.register("calcHitChance", function (e)
-    if (e.targetMobile.reference.baseObject.id == common.npcs.falx) then
-        e.hitChance = 0
-    end
-end)
-
-event.register("combatStart", function (e)
-    if (e.actor.reference.baseObject.id == common.npcs.falx) then
-        return false
-    end
-end)
 -----------------------------------------------------
 
 --
@@ -139,6 +127,28 @@ event.register("activate", function(e)
     if (e.target.baseObject.id == common.npcs.barnand and 
         tes3.getJournalIndex({ id = common.journals.fq01}) == 50) then
         tes3.updateJournal({id=common.journals.fq01, index=60})
+    end
+end)
+-----------------------------------------------------
+
+-- 
+-- Handle Immortal NPCs who only die via scripting.
+--
+local immortals = {
+    [common.npcs.falx] = true,
+    [common.npcs.torture_folvys] = true,
+    [common.npcs.prisoner_waylas] = true,
+}
+
+event.register("calcHitChance", function (e)
+    if (immortals[e.targetMobile.reference.baseObject.id]) then
+        e.hitChance = 0
+    end
+end)
+
+event.register("combatStart", function (e)
+    if (immortals[e.actor.reference.baseObject.id]) then
+        return false
     end
 end)
 -----------------------------------------------------
