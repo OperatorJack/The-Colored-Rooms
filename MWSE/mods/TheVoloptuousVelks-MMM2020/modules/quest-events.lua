@@ -151,4 +151,34 @@ event.register("combatStart", function (e)
         return false
     end
 end)
+
+event.register("damage", function (e)
+    if (immortals[e.reference.baseObject.id]) then
+        e.damage = 0
+        return false
+    end
+end)
+
+event.register("spellResist", function (e)
+    if (immortals[e.target.baseObject.id]) then
+        local key = common.getKeyFromValueFunc(common.spells, function(value) if value == e.source.id then return true end end)
+        if (not key) then
+            e.resistedPercent = 100
+            return false
+        end
+    end
+end)
 -----------------------------------------------------
+
+-- 
+-- Handle NPCs which cannot be activated.
+--
+local staticNpcs = {
+    [common.npcs.torture_folvys] = true,
+}
+
+event.register("activate", function (e)
+    if (staticNpcs[e.target.baseObject.id]) then
+        return false
+    end
+end)

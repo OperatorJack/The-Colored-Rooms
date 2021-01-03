@@ -79,7 +79,11 @@ local function initialized()
             local victim = tes3.getReference(common.npcs.torture_folvys)
 
             if (victim.mobile.isDead ~= true) then
-                victim.mobile:applyHealthDamage(1000)
+                mwscript.addSpell({
+                    reference = victim,
+                    spell = common.spells.ability_Paralysis
+                })
+
                 ayleid.mobile:startCombat(tes3.mobilePlayer)
                 e.reference:disable()
             end

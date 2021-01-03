@@ -11,6 +11,13 @@ function common.debug(str, ...)
     end
 end
 
+function common.getKeyFromValueFunc(tbl, func)
+    for key, value in pairs(tbl) do
+        if (func(value) == true) then return key end
+    end
+    return nil
+end
+
 common.markers = {
     vosCiel = "VV20_ActCielVosMarker",
     vosLirielle = "VV20_ActLirelleVosMarker"
@@ -55,6 +62,7 @@ common.spells = {
     cureDisease = "VV20_SpellCureDisease",
     contagion = "VV20_SpellContagion",
     summonAuroran = "VV20_SpellSummonAuroran",
+    ability_Paralysis = "VV20_AbilParalysis",
 }
 common.journals = {
     mq01 = "VV20_MQ_MysteriousRuin",
