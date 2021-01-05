@@ -107,6 +107,7 @@ common.skybox = {
     cells = {
         ["CustomSkyTest"] = true,
         ["The Colored Rooms"] = true,
+        ["Wilderness"] = true
     }
 }
 
