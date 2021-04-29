@@ -27,7 +27,6 @@ if (framework == nil) then
 end
 ----------------------------
 
-
 require("TheVoloptuousVelks-MMM2020.modules.diseases")
 require("TheVoloptuousVelks-MMM2020.modules.traps")
 require("TheVoloptuousVelks-MMM2020.modules.magic")
