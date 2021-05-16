@@ -22,12 +22,13 @@ The Colored Rooms was a group effort, created by many people! Each contributor i
 
 **Greatness7**
 
-- Blender tools used throughout mod for creature, level, and animation designs (BlenderCS, animation rigs)
+- Blender & automation tools used throughout mod for creature, level, and animation designs (BlenderCS, animation rigs, other tools)
 - Quest & Dialogue implementation
 - Philth & Ayleid dungeons design
+- Corrupted Cultist creatures
 - Peryite model
 - MWSE Custom Skybox
-- Some miscellaneous meshes used in dungeon designs.
+- Some miscellaneous meshes used in dungeon designs, like new daedric and ayleid tileset pieces.
 - Fixed T_D bugged meshes in Ayleid tileset.
 
 **Heinrich**
@@ -48,6 +49,7 @@ The Colored Rooms was a group effort, created by many people! Each contributor i
 - MWSE Trap mechanics
 - Magicka Expanded custom magic effects
 - Recolored Flora assets (not new meshes / textures made by Wolli)
+- Recolored Torture assets, based on LondonRook's torture models and T_D Ayleid textures.
 
 **Melchior Darhk**
 
